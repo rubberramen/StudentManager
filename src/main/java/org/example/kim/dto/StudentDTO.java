@@ -13,7 +13,8 @@ public class StudentDTO {
         this.name = name;
     }
 
-    private void validate(String name) {
+    private void validate(String name) {  // "chan"
+        // TODO: 2023-07-11 정규 표현식 활용. 
         String patten = "^[가-힣a-zA-Z]+$";
         if (!Pattern.matches(patten, name)) {
             throw new IllegalArgumentException(INVALID_VALUE.getMessage());
@@ -22,5 +23,14 @@ public class StudentDTO {
 
     public String getName() {
         return name;
+    }
+
+    //-----------------------
+
+    @Override
+    public String toString() {
+        return "StudentDTO{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

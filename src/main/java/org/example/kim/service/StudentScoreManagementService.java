@@ -1,10 +1,14 @@
 package org.example.kim.service;
 
 import org.example.kim.dto.ReplyDTO;
+import org.example.kim.dto.ScoreDTO;
+import org.example.kim.dto.StudentDTO;
 import org.example.kim.entity.Score;
 import org.example.kim.entity.Student;
 import org.example.kim.repository.ScoreRepository;
 import org.example.kim.repository.StudentRepository;
+
+import java.lang.reflect.Field;
 
 public class StudentScoreManagementService {
 
@@ -32,6 +36,31 @@ public class StudentScoreManagementService {
     }
 
     public void addStudentAndScore(ReplyDTO replyDTO) {
+        studentRepository.add(convertStudentDtoToStudentEntity(replyDTO.getStudent()));
+        scoreRepository.insertScore(studentRepository.getId(), convertScoreDtoToScoreEntity(replyDTO.getScore()));
+    }
 
+    // TODO: 2023-07-11
+    private Score convertScoreDtoToScoreEntity(ScoreDTO scoreDTO) {
+        Score score = new Score();
+
+        // TODO: 2023-07-11 reflection? 
+        Field[] declaredFields = score.getClass().getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (scoreDTO.getScores().containsKey(declaredField.getName())) {
+                declaredField.setAccessible(true);  // ???
+                try {
+                    declaredField.set(score, scoreDTO.getScores().get(declaredField.getName()));
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+                declaredField.setAccessible(false);
+            }
+        }
+        return score;
+    }
+
+    private Student convertStudentDtoToStudentEntity(StudentDTO studentDTO) {
+        return new Student(studentDTO.getName());
     }
 }
