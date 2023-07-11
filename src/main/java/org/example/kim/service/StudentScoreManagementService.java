@@ -1,6 +1,7 @@
 package org.example.kim.service;
 
 import org.example.kim.dto.ReplyDTO;
+import org.example.kim.dto.ResultDTO;
 import org.example.kim.dto.ScoreDTO;
 import org.example.kim.dto.StudentDTO;
 import org.example.kim.entity.Score;
@@ -9,6 +10,7 @@ import org.example.kim.repository.ScoreRepository;
 import org.example.kim.repository.StudentRepository;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 public class StudentScoreManagementService {
 
@@ -40,6 +42,28 @@ public class StudentScoreManagementService {
         scoreRepository.insertScore(studentRepository.getId(), convertScoreDtoToScoreEntity(replyDTO.getScore()));
     }
 
+    public ResultDTO findStudent(Integer studentId) {
+        return null;
+    }
+
+    public List<ResultDTO> findStudents() {
+        return null;
+    }
+
+    public List<ResultDTO> findAll() {
+        return null;
+    }
+
+    public void modifyScore(Integer studentId, ScoreDTO modifyScore) {
+
+    }
+
+    public void deleteScore(Integer studentId) {
+
+    }
+
+
+    //===================================================================
     // TODO: 2023-07-11
     private Score convertScoreDtoToScoreEntity(ScoreDTO scoreDTO) {
         Score score = new Score();

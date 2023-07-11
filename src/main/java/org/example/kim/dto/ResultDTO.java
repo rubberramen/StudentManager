@@ -1,7 +1,8 @@
 package org.example.kim.dto;
 
 import org.example.kim.entity.Score;
-import org.example.teacher.exam.entity.Student;
+import org.example.kim.entity.Student;
+
 
 public class ResultDTO {
 
@@ -27,5 +28,16 @@ public class ResultDTO {
 
     public Score getScore() {
         return score;
+    }
+
+    public String makeOutputFormat() {
+        return String.format("%8d%6s%8d%8d%8d%8d%10.1f",
+                studentId,
+                student.getName(),
+                score.getKorScore(),
+                score.getEngScore(),
+                score.getMathScore(),
+                score.getTotalScore(),
+                score.getAvgScore());
     }
 }
