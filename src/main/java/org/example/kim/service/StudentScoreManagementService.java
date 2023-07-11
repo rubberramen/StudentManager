@@ -42,6 +42,7 @@ public class StudentScoreManagementService {
         scoreRepository.insertScore(studentRepository.getId(), convertScoreDtoToScoreEntity(replyDTO.getScore()));
     }
 
+    // TODO: 2023-07-12 012  
     public ResultDTO findStudent(Integer studentId) {
         return null;
     }
