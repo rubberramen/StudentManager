@@ -46,7 +46,7 @@ public class StudentScoreManagementController {
         // TODO: 2023-07-12 012 repeat() method
         String inputCommandValue = repeat(inputView::inputCommand);
 
-        // TODO: 2023-07-12 012 람다 분석 예정.
+        // TODO: 2023-07-12 012
         Command inputCommand = Arrays.stream(Command.values())
                 .filter(command -> command.equalCommand(inputCommandValue))
                 .findAny().orElseGet(() -> EXIT);
@@ -108,7 +108,7 @@ public class StudentScoreManagementController {
     }
 
 
-    // TODO: 2023-07-12 012
+    // TODO: 2023-07-12 012 // Supplier
     private <T> T repeat(Supplier<T> inputReader) {
         try {
             return inputReader.get();
