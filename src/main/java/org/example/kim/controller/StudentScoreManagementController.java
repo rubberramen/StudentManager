@@ -2,6 +2,7 @@ package org.example.kim.controller;
 
 import org.example.kim.command.Command;
 import org.example.kim.dto.ReplyDTO;
+import org.example.kim.dto.ResultDTO;
 import org.example.kim.dto.ScoreDTO;
 import org.example.kim.dto.StudentDTO;
 import org.example.kim.service.StudentScoreManagementService;
@@ -9,6 +10,7 @@ import org.example.kim.view.InputView;
 import org.example.kim.view.OutputView;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
 import static org.example.kim.command.Command.EXIT;
@@ -46,6 +48,8 @@ public class StudentScoreManagementController {
         // TODO: 2023-07-12 012 repeat() method
         String inputCommandValue = repeat(inputView::inputCommand);
 
+//        Command[] values = Command.values();
+
         // TODO: 2023-07-12 012
         Command inputCommand = Arrays.stream(Command.values())
                 .filter(command -> command.equalCommand(inputCommandValue))
@@ -62,9 +66,11 @@ public class StudentScoreManagementController {
                 readAll();
                 break;
             case MODIFY_SCORE:
+                // TODO: 2023-07-13 013
                 updateScore();
                 break;
             case DELETE_SCORE:
+                // TODO: 2023-07-13 013
                 deleteScore();
                 break;
             default:
@@ -78,18 +84,18 @@ public class StudentScoreManagementController {
         StudentDTO newStudent = repeat(inputView::inputStudentData);
         ScoreDTO newScore = inputScore();
 
-        // TODO: 2023-07-12 012 ReplyDTO 왜 이름을 이렇게 지은 거지?
+        // TODO: 2023-07-12 012 ReplyDTO : Request 개념.
         management.addStudentAndScore(new ReplyDTO(newStudent, newScore));
     }
 
-    // TODO: 2023-07-12 012 할 예정
-
     private void searchScore() {
-
+        Integer studentIdValue = printStudentsAndInputStudentId();
+        outputView.printSearchResult(management.findStudent(studentIdValue));
     }
 
     private void readAll() {
-
+        List<ResultDTO> all = management.findAll();
+        outputView.printAll(all);
     }
 
     private void updateScore() {
@@ -100,7 +106,13 @@ public class StudentScoreManagementController {
 
     }
 
-    // ====================
+    // ===========================================================================
+
+    private Integer printStudentsAndInputStudentId() {
+        outputView.printStudents(management.findStudents());
+        outputView.printInputId();
+        return repeat(inputView::inputStudentId);
+    }
 
     private ScoreDTO inputScore() {
         outputView.printInputScore();

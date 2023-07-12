@@ -10,6 +10,7 @@ import org.example.kim.repository.ScoreRepository;
 import org.example.kim.repository.StudentRepository;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentScoreManagementService {
@@ -42,17 +43,27 @@ public class StudentScoreManagementService {
         scoreRepository.insertScore(studentRepository.getId(), convertScoreDtoToScoreEntity(replyDTO.getScore()));
     }
 
-    // TODO: 2023-07-12 012  
     public ResultDTO findStudent(Integer studentId) {
-        return null;
+        return new ResultDTO(studentId, studentRepository.findById(studentId), scoreRepository.findById(studentId));
     }
 
     public List<ResultDTO> findStudents() {
-        return null;
+        List<ResultDTO> resultDTOs = new ArrayList<>();
+
+        // TODO: 2023-07-13 013 : for문으로 로직 만들기.
+        studentRepository.findAll()
+                .forEach((integer, student) -> resultDTOs.add(new ResultDTO(integer, student, null)));
+
+        return resultDTOs;
     }
 
     public List<ResultDTO> findAll() {
-        return null;
+        List<ResultDTO> resultDTOs = new ArrayList<>();
+        studentRepository.findAll().keySet()
+                .forEach(integer -> resultDTOs.add(new ResultDTO(integer,
+                        studentRepository.findById(integer),
+                        scoreRepository.findById(integer))));
+        return resultDTOs;
     }
 
     public void modifyScore(Integer studentId, ScoreDTO modifyScore) {
