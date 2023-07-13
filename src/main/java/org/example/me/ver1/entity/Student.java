@@ -7,6 +7,11 @@ public class Student {
     int korScore;
     int engScore;
     int mathScore;
+    private int sum;
+    private float average;
+
+    public Student() {
+    }
 
     public Student(int stuNo, String stuName, int korScore, int engScore, int mathScore) {
         this.stuNo = stuNo;
@@ -14,6 +19,9 @@ public class Student {
         this.korScore = korScore;
         this.engScore = engScore;
         this.mathScore = mathScore;
+
+        this.sum = korScore + engScore + mathScore;
+        this.average = (float) (this.sum / 3.0);
     }
 
     public int getStuNo() {
@@ -56,13 +64,40 @@ public class Student {
         this.mathScore = mathScore;
     }
 
-    // 총점 구하는 메서드.
-    public int getTotScore() {
-        return korScore + engScore + mathScore;
+    public int getSum() {
+        return sum;
     }
 
-    // 평균 구하는 메서드.
-    public float getAvgScore() {
-        return getTotScore() / 3.0f;
+    public void setSum(int sum) {
+        this.sum = sum;
     }
+
+    public float getAverage() {
+        return average;
+    }
+
+    public void setAverage(float average) {
+        this.average = average;
+    }
+
+    @Override
+    public String toString() {
+        return  "학번 = " + stuNo +
+                ", 이름 = " + stuName +
+                ", 언어 점수 = " + korScore +
+                ", 영어 점수 = " + engScore +
+                ", 수학 점수 = " + mathScore +
+                ", 합계 = " + sum +
+                ", 평균 = " + average;
+    }
+
+    //    // 총점 구하는 메서드.
+//    public int getTotScore() {
+//        return korScore + engScore + mathScore;
+//    }
+//
+//    // 평균 구하는 메서드.
+//    public float getAvgScore() {
+//        return getTotScore() / 3.0f;
+//    }
 }

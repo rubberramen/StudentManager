@@ -14,7 +14,7 @@ public class StudentScoreProgram {
 
         inputSampleData();
         System.out.println("==================================================================");
-        System.out.println("           <🏫 학생 점수 프로그램> : while basic version            ");
+        System.out.println("           <🏫 학생 점수 프로그램> : ver 0 : Basic            ");
         System.out.println("==================================================================");
 
         // 본격 프로그램 시작
