@@ -1,8 +1,7 @@
-package org.example.me.ver1;
+package org.example.me.verFirst;
 
 public class StudentInfo {
 
-    private int id;
     private String name;
     private int korScore;
     private int engScore;
@@ -10,11 +9,7 @@ public class StudentInfo {
     private int sum;
     private float average;
 
-    public StudentInfo() {
-    }
-
-    public StudentInfo(int id, String name, int korScore, int engScore, int mathScore) {
-        this.id = id;
+    public StudentInfo(String name, int korScore, int engScore, int mathScore) {
         this.name = name;
         this.korScore = korScore;
         this.engScore = engScore;
@@ -22,14 +17,6 @@ public class StudentInfo {
 
         this.sum = korScore + engScore + mathScore;
         this.average = (float) (this.sum / 3.0);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
