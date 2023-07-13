@@ -120,7 +120,7 @@ public class StudentScoreManagementController {
     }
 
 
-    // TODO: 2023-07-12 012 // Supplier
+    // TODO: 2023-07-12 012 // Supplier 매개 없고, 반환 타입이 없는 메서드 사용 가능.
     private <T> T repeat(Supplier<T> inputReader) {
         try {
             return inputReader.get();
@@ -129,4 +129,7 @@ public class StudentScoreManagementController {
             return repeat(inputReader);
         }
     }
+
+    // TODO: 2023-07-13
+//    private <T extends Animal> T add(List<T> aninalList)
 }
